@@ -11,8 +11,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     This program is the auto-updater script for Nightscout Minecraft Visualizer.
     It runs every time the computer it is installed on is booted, and quickly downloads the most recent iteration
     of the pastebin file.
-
-    If you are interesting in viewing the actual code of the program, please visit
 ]]
 
 function clear()
