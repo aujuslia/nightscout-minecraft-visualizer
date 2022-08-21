@@ -21,7 +21,8 @@ function clear()
 end
 clear()
 
-pastebin_code = "4s3zAVAY"
+github_link = "http://raw.githubusercontent.com/aujuslia/nightscout-minecraft-visualizer/master/nsvis.lua"
+pastebin_code = "4s3zAVAY" --used as mirror backup download
 
 --make sure program is startup file.
 currentProgramName = shell.getRunningProgram()
@@ -59,9 +60,14 @@ term.setTextColor(colors.purple)
 print("Downloading update for Nightscout Visualizer...\n")
 term.setTextColor(colors.white)
 
-shell.run("pastebin get "..pastebin_code.." nightscoutvis_update.lua") --download nsvis code.
+shell.run("wget "..github_link.." nightscoutvis_update.lua") --download nsvis code.
 
---download is saved as _update, as trying to download a pastebin with the same name as a current file will fail.
+if fs.exists("nightscoutvis_update.lua") == false then
+    --if github download unsuccessful, attempt to download from pastebin mirror.
+    shell.run("pastebin get "..pastebin_code.." nightscoutvis_update.lua")
+end
+
+--download is saved as _update, as trying to download a file with the same name as a current file will fail.
 --confirms that update has downloaded before removing the previous file, incase pastebin connection fails.
 if fs.exists("nightscoutvis_update.lua") then --if the update successfully downloaded,
     if fs.exists("nightscoutvis.lua") then --and a previous version is on the system,
